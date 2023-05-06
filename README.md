@@ -1,7 +1,18 @@
-# michael-harris-sweng / michaelharris.io
+# michael-harris-sweng / michaelharris.io-ui
 
 ## Overview
-Professional portfolio, landing page and personal website.
+Client-side of my professional portfolio, landing page and personal website - [michaelharris.io](http://www.michaelharris.io).
 
 ### Tech Stack
-MEVN + Nuxt
+
+#### MEVNN
+
+MongoDB - Date store
+
+ExpressJS - REST framework
+
+VueJS - Client framework
+
+NodeJS - Server RTE
+
+NuxtJS - Vue framework
