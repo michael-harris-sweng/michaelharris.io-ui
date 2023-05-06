@@ -1,7 +1,7 @@
-# michael-harris-sweng / michaelharris.io-ui
+# michael-harris-sweng / michaelharris.io
 
 ## Overview
-Client-side of my professional portfolio, landing page and personal website - [michaelharris.io](http://www.michaelharris.io).
+Professional portfolio, landing page and personal website - [michaelharris.io](http://www.michaelharris.io).
 
 ### Tech Stack
 
