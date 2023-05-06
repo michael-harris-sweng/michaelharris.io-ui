@@ -1,18 +1,29 @@
 <template>
     <div class="hello-world">
-        <h1>Hello World!</h1>
+        <h1>Output: {{ hello || 'Server not running!' }}</h1>
         <h3 v-if="visible" @click="visible = false">Click Me!</h3>
     </div>
-</template>
+</template >
 
 <script lang="ts">
 export default defineNuxtComponent({
     name: "Hello World",
-    setup(props, context) {
+    async setup(props, context) {
         const visible: Ref<boolean> = ref(true);
+        let hello: Ref = ref(null);
+
+        try {
+            const { data } = await useFetch<Response>('http://localhost:4000/hello')
+            if (data.value?.body) {
+                hello = ref(data.value?.body);
+            }
+        } catch (error) {
+            console.error(error)
+        }
 
         return {
             visible,
+            hello
         }
     },
 })
