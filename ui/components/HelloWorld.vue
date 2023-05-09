@@ -1,29 +1,30 @@
 <template>
     <div class="hello-world">
-        <h1>Output: {{ hello || 'Server not running!' }}</h1>
-        <h3 v-if="visible" @click="visible = false">Click Me!</h3>
+        <h1>Output: {{ state.hello || 'All Quiet!' }}</h1>
+        <button @click="greetServer">Refresh</button>
     </div>
 </template >
 
 <script lang="ts">
 export default defineNuxtComponent({
     name: "Hello World",
-    async setup(props, context) {
-        const visible: Ref<boolean> = ref(true);
-        let hello: Ref = ref(null);
+    async setup(_props, _context) {
+        const state = reactive({ hello: '' });
 
-        try {
-            const { data } = await useFetch<Response>('http://localhost:4000/hello')
-            if (data.value?.body) {
-                hello = ref(data.value?.body);
+        const greetServer = async (): Promise<void> => {
+            try {
+                const { data } = await useFetch<Response>('http://localhost:4000/hello')
+                if (data.value) {
+                    state.hello = '' + data.value.body;
+                }
+            } catch (error) {
+                console.error(error)
             }
-        } catch (error) {
-            console.error(error)
         }
 
         return {
-            visible,
-            hello
+            state,
+            greetServer,
         }
     },
 })
@@ -34,6 +35,7 @@ export default defineNuxtComponent({
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: flex-start;
 
     h3 {
         cursor: pointer;
